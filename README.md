@@ -28,7 +28,6 @@ Follow these steps to clone the repository and set up the development environmen
 Clone this project to your local machine:
 
 ```bash
-# Replace with your project's URL
 git clone https://github.com/fersonull/laravel-template.git
 
 # Navigate into the new directory
