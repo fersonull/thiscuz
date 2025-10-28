@@ -29,10 +29,10 @@ Clone this project to your local machine:
 
 ```bash
 # Replace with your project's URL
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/your-username/laravel-template.git
 
 # Navigate into the new directory
-cd your-repo-name
+cd laravel-template
 ```
 
 ### 2\. Install Dependencies
