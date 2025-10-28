@@ -29,7 +29,7 @@ Clone this project to your local machine:
 
 ```bash
 # Replace with your project's URL
-git clone https://github.com/your-username/laravel-template.git
+git clone https://github.com/fersonull/laravel-template.git
 
 # Navigate into the new directory
 cd laravel-template
