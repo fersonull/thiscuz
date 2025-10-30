@@ -1,6 +1,7 @@
 import { Head } from '@inertiajs/react';
-import { Github } from 'lucide-react';
+import { Link } from '@inertiajs/react';
 import MainLayout from '@/layouts/main-layout';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
     return (
@@ -10,6 +11,10 @@ export default function Home() {
                 <p className="text-2xl font-bold text-black/60">
                     Home page
                 </p>
+
+                <Button variant="link" asChild>
+                    <Link href="/discussions">Go to Discussions</Link>
+                </Button>
             </div>
         </MainLayout>
     );
