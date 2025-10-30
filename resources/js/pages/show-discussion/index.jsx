@@ -1,5 +1,6 @@
 import MainLayout from "@/layouts/main-layout";
 import DiscussionBody from "@/components/show-discussion/discussion-body";
+import Comments from "@/components/show-discussion/comments";
 
 const discussion = {
     id: 1,
@@ -21,6 +22,8 @@ const Discussion = () => {
                 tags={discussion.tags}
                 solutions={discussion.solutions}
             />
+
+            <Comments />
         </MainLayout>
     )
 }
