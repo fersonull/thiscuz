@@ -3,14 +3,14 @@ import DiscussionCard from "@/components/discussions/discussion-card"
 
 const discussions = [
     {
-        id: '1',
+        id: 1,
         title: "My fedora broke while downloading games",
         date: 'Oct 4, 2025',
         solutions: 4,
         tags: ["#linux", "#fedora", "#gnome"]
     },
     {
-        id: '2',
+        id: 2,
         title: "I can't open my dock to dash in fedora with gnome. please help asap",
         date: 'Oct 30, 2025',
         solutions: 1,
@@ -26,6 +26,7 @@ const DiscussionPage = () => {
                     {discussions.map(({ id, title, date, solutions, tags }) => (
                         <DiscussionCard
                             key={id}
+                            id={id}
                             title={title}
                             date={date}
                             solutions={solutions}

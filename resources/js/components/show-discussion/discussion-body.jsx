@@ -1,11 +1,11 @@
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar"
-import { Link } from "@inertiajs/react"
-import Tags from "./tags"
+import { Link } from '@inertiajs/react'
+import React from 'react'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import Tags from '../discussions/tags'
 
-
-export default function DiscussionCard({ id, title, date, solutions = 0, tags = [] }) {
+export default function DiscussionBody({ id, title, content, date, tags, solutions }) {
     return (
-        <Link href={`/discussions/${id}`} className="py-3 px-4 flex flex-col gap-8 border-border border-b mb-4 group">
+        <div className="py-3 px-4 flex flex-col gap-4 border-border border-b mb-4">
             <div className="flex items-center gap-3">
                 <Avatar>
                     <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500" />
@@ -13,12 +13,14 @@ export default function DiscussionCard({ id, title, date, solutions = 0, tags = 
                 </Avatar>
 
                 <div className="flex flex-col">
-                    <p className="font-bold text-xl group-hover:underline">{title}</p>
+                    <p className="font-bold text-xl">{title}</p>
                     <p className="text-muted-foreground font-medium text-sm">{date}</p>
                 </div>
             </div>
 
-            <div className="w-full flex justify-between">
+            <p>{content}</p>
+
+            <div className="w-full flex justify-between mt-4">
                 <div>
                     <Tags tags={tags} />
                 </div>
@@ -26,6 +28,6 @@ export default function DiscussionCard({ id, title, date, solutions = 0, tags = 
                     <span className="font-bold">{solutions}</span> {solutions > 1 ? 'solutions' : 'solution'}
                 </span>
             </div>
-        </Link>
+        </div>
     )
 }
