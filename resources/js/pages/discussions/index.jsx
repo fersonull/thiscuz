@@ -1,6 +1,8 @@
+import MainLayout from "@/layouts/main-layout"
+
 const DiscussionPage = () => {
     return (
-        <div>DiscussionPage</div>
+        <MainLayout>DiscussionPage</MainLayout>
     )
 }
 
