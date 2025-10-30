@@ -5,7 +5,7 @@ export default function MainLayout({ children }) {
         <div className="flex flex-col h-screen">
             <Navbar />
 
-            <main className="flex-1">
+            <main className="flex-1 lg:max-w-4xl xl:max-w-6xl max-w-md md:max-w-3xl w-full mx-auto">
                 {children}
             </main>
         </div>
