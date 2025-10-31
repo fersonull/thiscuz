@@ -11,9 +11,11 @@ export default function CommentCard() {
             </Avatar>
 
             <div className="flex flex-col group">
+                <p className="mb-1 font-medium">Jasfer Monton</p>
+
                 <CommentBubble content="just install it on vms. it will just install a windows os on that vm and then you can play any game with anti cheat" />
 
-                <div className="w-full mt-1 relative text-end">
+                <div className="w-full mt-1 relative lg:hidden text-end lg:group-hover:block">
                     <Button variant="outline" className="right-0 border-0 shadow-none">
                         <MessagesSquare />
                         Reply
