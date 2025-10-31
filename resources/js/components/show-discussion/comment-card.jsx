@@ -1,4 +1,4 @@
-import { CheckCheck } from "lucide-react"
+import { CheckCheck, MessagesSquare } from "lucide-react"
 import { Avatar, AvatarImage } from "../ui/avatar"
 import { Button } from "../ui/button"
 import CommentBubble from "./comment-bubble"
@@ -10,11 +10,15 @@ export default function CommentCard() {
                 <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500" />
             </Avatar>
 
-            <div className="flex flex-col group cursor-pointer">
+            <div className="flex flex-col group">
                 <CommentBubble content="just install it on vms. it will just install a windows os on that vm and then you can play any game with anti cheat" />
 
-                <div className="w-full hidden group-hover:block mt-1 relative">
-                    <Button variant="outline" className="absolute right-0 border-0">
+                <div className="w-full mt-1 relative text-end">
+                    <Button variant="outline" className="right-0 border-0 shadow-none">
+                        <MessagesSquare />
+                        Reply
+                    </Button>
+                    <Button variant="outline" className=" right-0 border-0 shadow-none">
                         <CheckCheck />
                         Mark as solution
                     </Button>
