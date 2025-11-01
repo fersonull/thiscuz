@@ -130,3 +130,9 @@
         @apply bg-background text-foreground;
     }
 }
+
+@layer components {
+    button {
+        @apply cursor-pointer
+    }
+}
