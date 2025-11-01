@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react"
 import { LogIn } from "lucide-react"
 import { Button } from "../ui/button"
+import { MessagesSquare } from "lucide-react"
 
 export default function Navbar() {
     return (
@@ -11,9 +12,9 @@ export default function Navbar() {
                 </Link>
 
                 <div className="flex gap-2">
-                    <Button size="sm">
-                        <LogIn />
-                        Login
+                    <Button>
+                        <MessagesSquare />
+                        Create new
                     </Button>
                 </div>
             </div>
