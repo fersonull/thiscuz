@@ -6,6 +6,7 @@ import { useForm } from "@inertiajs/react"
 import { useCallback, useState } from "react"
 
 const LoginPage = () => {
+    const [status, setStatus] = useState({})
     const [errors, setErrors] = useState([])
     const { data, setData } = useForm({
         email: "",
@@ -15,25 +16,34 @@ const LoginPage = () => {
     const handleLogin = useCallback(async (e) => {
         e.preventDefault()
 
+        setStatus({ loading: true })
+
         const { email, password } = data
 
-        const response = await fetch("http://localhost:8000/api/login", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, password }),
-            credentials: "include"
-        })
+        try {
+            const response = await fetch("http://localhost:8000/api/login", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, password }),
+                credentials: "include"
+            })
 
-        const result = await response.json()
+            const result = await response.json()
 
-        console.log(result)
+            if (result.errors) {
+                setErrors(result.errors)
+            }
 
-        if (result.errors) {
-            setErrors(result.errors)
+            console.log(result)
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setStatus({ loading: false })
         }
+
     })
 
     return (
@@ -42,7 +52,7 @@ const LoginPage = () => {
 
             <div className="flex flex-col items-center gap-6 w-full">
                 <div className="text-center max-w-xs">
-                    <p className="text-3xl font-bold tracking-tighter">Welcome Back!</p>
+                    <p className="text-3xl font-bold tracking-tighter">Welcome back!</p>
                     <p className="text-muted-foreground">Enter your credentials to continue.</p>
                 </div>
 
@@ -76,7 +86,9 @@ const LoginPage = () => {
                             <span key={idx} className="text-red-600 text-sm">{err}</span>
                         ))}
                     </div>
-                    <Button className="w-full py-6 font-medium text-base">Login</Button>
+                    <Button disabled={status.loading} className="w-full py-6 font-medium text-base">
+                        {status.loading ? "Logging in..." : "Login"}
+                    </Button>
                 </form>
             </div>
 
