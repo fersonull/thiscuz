@@ -3,9 +3,10 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
 import { useForm } from "@inertiajs/react"
-import { useCallback } from "react"
+import { useCallback, useState } from "react"
 
 const LoginPage = () => {
+    const [errors, setErrors] = useState([])
     const { data, setData } = useForm({
         email: "",
         password: ""
@@ -29,6 +30,10 @@ const LoginPage = () => {
         const result = await response.json()
 
         console.log(result)
+
+        if (result.errors) {
+            setErrors(result.errors)
+        }
     })
 
     return (
@@ -42,24 +47,34 @@ const LoginPage = () => {
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-4 w-full max-w-sm">
-                    <div className="flex flex-col gap-2">
-                        <Label className="text-base">Email</Label>
-                        <Input
-                            id="email"
-                            name="email"
-                            placeholder="johndoe@dis.do"
-                            onChange={(e) => setData("email", e.target.value)}
-                        />
+                    <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-2">
+                            <Label className="text-base">Email</Label>
+                            <Input
+                                id="email"
+                                name="email"
+                                placeholder="johndoe@dis.do"
+                                onChange={(e) => setData("email", e.target.value)}
+                            />
+                        </div>
+                        {errors && errors?.email?.map((err, idx) => (
+                            <span key={idx} className="text-red-600 text-sm">{err}</span>
+                        ))}
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <Label className="text-base">Password</Label>
-                        <Input
-                            id="password"
-                            name="password"
-                            placeholder="mysecurepassword123"
-                            type="password"
-                            onChange={(e) => setData("password", e.target.value)}
-                        />
+                    <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-2">
+                            <Label className="text-base">Password</Label>
+                            <Input
+                                id="password"
+                                name="password"
+                                placeholder="mysecurepassword123"
+                                type="password"
+                                onChange={(e) => setData("password", e.target.value)}
+                            />
+                        </div>
+                        {errors && errors?.password?.map((err, idx) => (
+                            <span key={idx} className="text-red-600 text-sm">{err}</span>
+                        ))}
                     </div>
                     <Button className="w-full py-6 font-medium text-base">Login</Button>
                 </form>

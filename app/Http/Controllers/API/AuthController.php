@@ -16,6 +16,9 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
+        sleep(1);
+
+
         $request->validate([
             "email" => "required|email|exists:users",
             "password" => "required"
@@ -29,17 +32,17 @@ class AuthController extends Controller
                 "errors" => [
                     "password" => ["Incorrect password."]
                 ]
-            ]);
+            ], 400);
         }
 
-        $token = $user->createToken($user->name)->plainTextToken;
+        $token = $user->createToken($user)->plainTextToken;
 
         $result = [
             "user" => $user,
             "token" => $token
         ];
 
-        return response()->json($result);
+        return response()->json($result, 200);
 
     }
 
