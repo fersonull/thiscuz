@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
 import { useForm } from "@inertiajs/react"
 import { useCallback, useState } from "react"
+import { Or } from "@/components/ui/or"
+import { Mail } from "lucide-react"
 
 const LoginPage = () => {
     const [status, setStatus] = useState({})
@@ -50,13 +52,13 @@ const LoginPage = () => {
         <div className="flex flex-col items-center justify-between h-dvh font-geist py-4">
             <Link className="text-xl font-bold tracking-tighter">thiscuz</Link>
 
-            <div className="flex flex-col items-center gap-6 w-full">
+            <div className="flex flex-col items-center gap-6 w-sm">
                 <div className="text-center max-w-xs">
                     <p className="text-3xl font-bold tracking-tighter">Welcome back!</p>
                     <p className="text-muted-foreground">Enter your credentials to continue.</p>
                 </div>
 
-                <form onSubmit={handleLogin} className="space-y-4 w-full max-w-sm">
+                <form onSubmit={handleLogin} className="space-y-4 w-full">
                     <div className="flex flex-col gap-1">
                         <div className="flex flex-col gap-2">
                             <Label className="text-base">Email</Label>
@@ -90,6 +92,15 @@ const LoginPage = () => {
                         {status.loading ? "Logging in..." : "Login"}
                     </Button>
                 </form>
+
+                <Or />
+
+                <Button className="w-full py-6 text-base font-medium" variant="outline" asChild>
+                    <Link href="/register">
+                        <Mail />
+                        Create new email account
+                    </Link>
+                </Button>
             </div>
 
             <footer>
