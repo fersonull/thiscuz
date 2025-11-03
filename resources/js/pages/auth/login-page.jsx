@@ -6,6 +6,7 @@ import { useForm } from "@inertiajs/react"
 import { useCallback, useState } from "react"
 import { Or } from "@/components/ui/or"
 import { Mail } from "lucide-react"
+import apiService from "@/services/api-service"
 
 const LoginPage = () => {
     const [status, setStatus] = useState({})
@@ -20,28 +21,15 @@ const LoginPage = () => {
 
         setStatus({ loading: true })
 
-        const { email, password } = data
+        // const { email, password } = data
 
         try {
-            const response = await fetch("http://localhost:8000/api/login", {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email, password }),
-                credentials: "include"
-            })
+            const response = await apiService.post("/login", data)
 
-            const result = await response.json()
-
-            if (result.errors) {
-                setErrors(result.errors)
-            }
-
-            console.log(result)
+            console.log(response.data)
         } catch (error) {
-            console.error(error)
+            console.error(error.response.data.errors)
+            setErrors(error.response.data.errors)
         } finally {
             setStatus({ loading: false })
         }

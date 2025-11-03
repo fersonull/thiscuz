@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::get("/", function (Request $request) {
-    return "API";
+    return response()->json("API");
 });
 
 Route::post("/register", [AuthController::class, "register"])->name("register");
