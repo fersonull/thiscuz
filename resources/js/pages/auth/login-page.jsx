@@ -6,7 +6,7 @@ import { useForm } from "@inertiajs/react"
 import { useCallback, useState } from "react"
 import { Or } from "@/components/ui/or"
 import { Mail } from "lucide-react"
-import apiService from "@/services/api-service"
+import api from "@/services/api-service"
 
 const LoginPage = () => {
     const [status, setStatus] = useState({})
@@ -21,10 +21,8 @@ const LoginPage = () => {
 
         setStatus({ loading: true })
 
-        // const { email, password } = data
-
         try {
-            const response = await apiService.post("/login", data)
+            const response = await api.post("/login", data)
 
             console.log(response.data)
         } catch (error) {
