@@ -6,6 +6,8 @@ import { useForm } from "@inertiajs/react"
 import { useCallback, useState } from "react"
 import { Or } from "@/components/ui/or"
 import { Mail } from "lucide-react"
+import { Head } from "@inertiajs/react"
+import { router } from "@inertiajs/react"
 import api from "@/services/api-service"
 
 const LoginPage = () => {
@@ -25,6 +27,7 @@ const LoginPage = () => {
             const response = await api.post("/login", data)
 
             console.log(response.data)
+            router.visit("/discussions")
         } catch (error) {
             console.error(error.response.data.errors)
             setErrors(error.response.data.errors)
@@ -36,6 +39,7 @@ const LoginPage = () => {
 
     return (
         <div className="flex flex-col items-center justify-between h-dvh font-geist py-4">
+            <Head title="thiscuz | Login" />
             <Link className="text-xl font-bold tracking-tighter">thiscuz</Link>
 
             <div className="flex flex-col items-center gap-6 w-sm">
