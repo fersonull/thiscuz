@@ -9,27 +9,40 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    private $rules = [
+        "email.exists" => "Email not found.",
+    ];
+
     public function login(Request $request)
     {
+
+        sleep(1);
+
+
         $request->validate([
-            "email" => "required|email",
+            "email" => "required|email|exists:users",
             "password" => "required"
-        ]);
+        ], $this->rules);
 
         $user = User::where("email", $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return [
-                "message" => "Invalid credentials"
-            ];
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json([
+                "message" => "Incorrect password.",
+                "errors" => [
+                    "password" => ["Incorrect password."]
+                ]
+            ], 400);
         }
 
-        $token = $user->createToken($user->name)->plainTextToken;
+        $token = $user->createToken($user)->plainTextToken;
 
-        return [
+        $result = [
             "user" => $user,
             "token" => $token
         ];
+
+        return response()->json($result, 200);
 
     }
 

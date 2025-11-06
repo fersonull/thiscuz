@@ -1,8 +1,20 @@
 import { Head } from '@inertiajs/react';
-import { Github } from 'lucide-react';
 import MainLayout from '@/layouts/main-layout';
+import apiService from '@/services/api-service';
+import { useEffect } from 'react';
 
 export default function Home() {
+
+    const init = async () => {
+        const res = await apiService.get("/")
+
+        console.log(res)
+    }
+
+    useEffect(() => {
+        init()
+    }, [])
+
     return (
         <MainLayout>
             <Head title="Welcome" />
