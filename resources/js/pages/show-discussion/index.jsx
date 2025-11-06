@@ -23,7 +23,7 @@ const Discussion = () => {
                 solutions={discussion.solutions}
             />
 
-            <Comments />
+            <Comments id={discussion.id} />
         </MainLayout>
     )
 }
