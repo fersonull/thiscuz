@@ -15,35 +15,38 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-
         sleep(1);
 
-
-        $request->validate([
-            "email" => "required|email|exists:users",
-            "password" => "required"
-        ], $this->rules);
+        $request->validate(
+            [
+                "email" => "required|email|exists:users",
+                "password" => "required",
+            ],
+            $this->rules,
+        );
 
         $user = User::where("email", $request->email)->first();
 
         if (!Hash::check($request->password, $user->password)) {
-            return response()->json([
-                "message" => "Incorrect password.",
-                "errors" => [
-                    "password" => ["Incorrect password."]
-                ]
-            ], 400);
+            return response()->json(
+                [
+                    "message" => "Incorrect password.",
+                    "errors" => [
+                        "password" => ["Incorrect password."],
+                    ],
+                ],
+                400,
+            );
         }
 
         $token = $user->createToken($user)->plainTextToken;
 
         $result = [
             "user" => $user,
-            "token" => $token
+            "token" => $token,
         ];
 
         return response()->json($result, 200);
-
     }
 
     public function register(Request $request)
@@ -51,7 +54,7 @@ class AuthController extends Controller
         $fields = $request->validate([
             "name" => "required",
             "email" => "required|email|unique:users",
-            "password" => "required|min:6|confirmed"
+            "password" => "required|min:6|confirmed",
         ]);
 
         $user = User::create($fields);
@@ -64,7 +67,7 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
 
         return [
-            "message" => "You are logged out."
+            "message" => "You are logged out.",
         ];
     }
 }

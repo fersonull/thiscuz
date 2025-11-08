@@ -13,7 +13,7 @@ export default function DiscussionCard({ id, title, date, solutions = 0, tags = 
                 </Avatar>
 
                 <div className="flex flex-col">
-                    <p className="font-bold text-xl group-hover:underline">{title}</p>
+                    <p className="font-bold text-xl group-hover:underline">{tcitle}</p>
                     <p className="text-muted-foreground font-medium text-sm">{date}</p>
                 </div>
             </div>
